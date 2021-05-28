@@ -94,6 +94,7 @@ public class StoreResource {
 
         Store result = storeRepository.save(store);
         log.debug("SEND store alert for Store: {}", store);
+        log.info("SEND store alert for Store: {}", store);
         alertService.alertStoreStatus(result);
 
         return ResponseEntity

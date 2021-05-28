@@ -15,8 +15,10 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.UUID;
 
+import com.okta.developer.store.service.AlertService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
@@ -57,6 +59,13 @@ class StoreResourceIT {
 
     private Store store;
 
+
+
+    @Autowired
+    private AlertService alertService;
+
+
+
     /**
      * Create an entity for this test.
      * <p>
@@ -91,6 +100,11 @@ class StoreResourceIT {
 
     @BeforeEach
     public void initTest() {
+
+        MockitoAnnotations.initMocks(this);
+        final StoreResource storeResource = new StoreResource(storeRepository, alertService);
+
+
         storeRepository.deleteAll();
         store = createEntity();
     }
