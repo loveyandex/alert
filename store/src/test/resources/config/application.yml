@@ -1,0 +1,112 @@
+# ===================================================================
+# Spring Boot configuration.
+#
+# This configuration is used for unit/integration tests.
+#
+# More information on profiles: https://www.jhipster.tech/profiles/
+# More information on configuration properties: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+eureka:
+  client:
+    enabled: false
+  instance:
+    appname: store
+    instanceId: store:${spring.application.instance-id:${random.value}}
+
+mongock:
+  change-logs-scan-package:
+    - com.okta.developer.store.config.dbmigrations
+  mongo-db:
+    read-concern: local
+    write-concern:
+      journal: false
+
+spring:
+  application:
+    name: store
+  cloud:
+    config:
+      enabled: false
+  jackson:
+    serialization:
+      write-durations-as-timestamps: false
+  data:
+    mongodb:
+      host: localhost
+      port: 0
+      database: store
+  mail:
+    host: localhost
+  main:
+    allow-bean-definition-overriding: true
+  messages:
+    basename: i18n/messages
+  task:
+    execution:
+      thread-name-prefix: store-task-
+      pool:
+        core-size: 1
+        max-size: 50
+        queue-capacity: 10000
+    scheduling:
+      thread-name-prefix: store-scheduling-
+      pool:
+        size: 1
+  thymeleaf:
+    mode: HTML
+
+server:
+  port: 10344
+  address: localhost
+
+# ===================================================================
+# JHipster specific properties
+#
+# Full reference is available at: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+jhipster:
+  clientApp:
+    name: 'storeApp'
+  logging:
+    # To test json console appender
+    use-json-format: false
+    logstash:
+      enabled: false
+      host: localhost
+      port: 5000
+      queue-size: 512
+  security:
+    authentication:
+      jwt:
+        # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
+        base64-secret: MjUxNmMzMThmNjlhMmFiMjc2MWE2NDYxNDQ2NWFkMTcxZGVmZjgwZDg0YjA3YmM0ODU1YjVlNTU3NGE3YzUxMjNjNzcxYzc1ZWI2NGQ4NzQ1M2I3MGE2M2JmNmJhOWNjNDU2MDRlY2JlMTY2NGMwMDQ1NDIxNjIxOGUwNmMzZWQ=
+        # Token is valid 24 hours
+        token-validity-in-seconds: 86400
+kafka:
+  bootstrap-servers: localhost:9092
+  consumer:
+    key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    group.id: store
+    auto.offset.reset: earliest
+  producer:
+    key.serializer: org.apache.kafka.common.serialization.StringSerializer
+    value.serializer: org.apache.kafka.common.serialization.StringSerializer
+# ===================================================================
+# Application specific properties
+# Add your own application properties here, see the ApplicationProperties class
+# to have type-safe configuration, like in the JHipsterProperties above
+#
+# More documentation is available at:
+# https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+# application:

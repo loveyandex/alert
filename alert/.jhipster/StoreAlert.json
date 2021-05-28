@@ -1,0 +1,42 @@
+{
+  "name": "StoreAlert",
+  "fields": [
+    {
+      "fieldName": "storeName",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "storeStatus",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "timestamp",
+      "fieldType": "Instant",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "store_alert",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": [
+    "alert"
+  ],
+  "microserviceName": "alert",
+  "clientRootFolder": "alert",
+  "databaseType": "sql",
+  "changelogDate": "20210516135450"
+}
